@@ -36,7 +36,7 @@ const technologies = [
 
 export default function Tecnologias() {
   return (
-    <section id="tecnologias" className="bg-white pt-10 pb-20 lg:pt-12 lg:pb-24">
+    <section id="tecnologias" className="scroll-mt-[var(--header-height)] bg-white pt-6 pb-14 lg:pt-8 lg:pb-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label="Tecnologías"

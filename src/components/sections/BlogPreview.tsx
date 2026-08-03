@@ -10,7 +10,7 @@ export default function BlogPreview() {
   if (posts.length === 0) return null;
 
   return (
-    <section id="blog" className="bg-white pt-10 pb-20 lg:pt-12 lg:pb-24">
+    <section id="blog" className="bg-white pt-6 pb-14 lg:pt-8 lg:pb-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label="Blog"

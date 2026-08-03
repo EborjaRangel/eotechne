@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, Award } from "lucide-react";
 import { motion } from "framer-motion";
@@ -25,8 +26,13 @@ const stats = [
 ];
 
 export default function Hero() {
+  useEffect(() => {
+    if (window.location.hash) return;
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <section className="relative min-h-screen overflow-hidden bg-white">
+    <section id="inicio" className="relative overflow-hidden bg-white pb-6 lg:pb-8">
       <motion.div
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-eotechne-green/15 via-transparent to-transparent"
         animate={{ opacity: [0.6, 1, 0.6] }}
@@ -44,13 +50,13 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-4 pt-20 pb-12 sm:px-6 sm:pt-24 sm:pb-16 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 pt-[calc(var(--header-height)+0.375rem)] pb-8 sm:px-6 sm:pt-[calc(var(--header-height)+0.75rem)] sm:pb-12 lg:px-8">
         <div className="max-w-5xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="mb-6 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-eotechne-green/40 bg-eotechne-green/10 px-3 py-1.5 text-xs font-medium leading-snug text-eotechne-blue-dark sm:px-4 sm:text-sm"
+            transition={{ duration: 0.4, delay: 0.05 }}
+            className="mb-4 inline-flex w-full max-w-full flex-wrap items-center gap-2 rounded-full border border-eotechne-green/40 bg-eotechne-green/10 px-3 py-2 text-xs font-medium leading-snug text-eotechne-blue-dark sm:mb-6 sm:w-auto sm:px-4 sm:py-1.5 sm:text-sm"
           >
             <span className="relative flex h-2 w-2 shrink-0">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-eotechne-green opacity-75" />

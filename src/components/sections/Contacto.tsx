@@ -4,7 +4,7 @@ import ContactForm from "@/components/ui/ContactForm";
 
 export default function Contacto() {
   return (
-    <section id="contacto" className="relative overflow-hidden bg-eotechne-blue-dark pt-10 pb-20 lg:pt-12 lg:pb-24">
+    <section id="contacto" className="scroll-mt-[var(--header-height)] relative overflow-hidden bg-eotechne-blue-dark pt-6 pb-14 lg:pt-8 lg:pb-16">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_rgba(142,196,75,0.1)_0%,_transparent_60%)]" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -20,7 +20,7 @@ const certifications = [
 
 export default function Speech() {
   return (
-    <section className="relative overflow-hidden bg-gray-50 pt-10 pb-16 lg:pt-12 lg:pb-20">
+    <section className="relative overflow-hidden bg-white pt-4 pb-6 lg:pt-6 lg:pb-8">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(142,196,75,0.08)_0%,_transparent_70%)]" />
 
       <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -51,8 +51,8 @@ export default function Speech() {
           </p>
         </blockquote>
 
-        <div className="mt-14">
-          <p className="mb-8 text-center text-sm font-semibold uppercase tracking-widest text-eotechne-blue-dark/60">
+        <div className="mt-10">
+          <p className="mb-6 text-center text-sm font-semibold uppercase tracking-widest text-eotechne-blue-dark/60">
             Certificaciones vigentes
           </p>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -77,7 +77,7 @@ export default function Speech() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {[
             {
               icon: Calendar,

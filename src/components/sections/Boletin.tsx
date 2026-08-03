@@ -3,7 +3,7 @@ import NewsletterForm from "@/components/blog/NewsletterForm";
 
 export default function Boletin() {
   return (
-    <section id="boletin" className="bg-gray-50 pt-10 pb-20 lg:pt-12 lg:pb-24">
+    <section id="boletin" className="bg-gray-50 pt-6 pb-14 lg:pt-8 lg:pb-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="overflow-hidden rounded-2xl bg-eotechne-blue-dark">
           <div className="grid gap-6 p-6 sm:gap-8 sm:p-8 lg:grid-cols-2 lg:p-12">

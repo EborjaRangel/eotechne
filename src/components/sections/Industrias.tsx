@@ -3,7 +3,7 @@ import { industries } from "@/lib/data/industries";
 
 export default function Industrias() {
   return (
-    <section id="industrias" className="relative overflow-hidden bg-eotechne-blue-dark pt-10 pb-20 lg:pt-12 lg:pb-24">
+    <section id="industrias" className="scroll-mt-[var(--header-height)] relative overflow-hidden bg-eotechne-blue-dark pt-6 pb-14 lg:pt-8 lg:pb-16">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(142,196,75,0.08)_0%,_transparent_50%)]" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
