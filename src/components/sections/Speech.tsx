@@ -30,7 +30,7 @@ export default function Speech() {
           </span>
         </div>
 
-        <blockquote className="mx-auto max-w-4xl text-center">
+        <blockquote className="mx-auto max-w-4xl">
           <p className="text-xl font-semibold leading-relaxed text-eotechne-blue-dark sm:text-2xl md:text-3xl lg:text-4xl lg:leading-snug">
             Somos especialistas en{" "}
             <span className="text-eotechne-green">desarrollo a la medida</span>.
@@ -52,19 +52,19 @@ export default function Speech() {
         </blockquote>
 
         <div className="mt-10">
-          <p className="mb-6 text-center text-sm font-semibold uppercase tracking-widest text-eotechne-blue-dark/60">
+          <p className="mb-6 text-sm font-semibold uppercase tracking-widest text-eotechne-blue-dark/60">
             Certificaciones vigentes
           </p>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {certifications.map(({ icon: Icon, title, description }) => (
               <div
                 key={title}
-                className="flex flex-col items-center rounded-2xl border border-eotechne-green/20 bg-white p-5 text-center shadow-sm sm:p-6"
+                className="flex w-full flex-col rounded-2xl border border-eotechne-green/20 bg-white p-5 shadow-sm sm:p-6"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-eotechne-green/10 text-eotechne-green">
+                <div className="flex h-12 w-12 items-center justify-center self-center rounded-xl bg-eotechne-green/10 text-eotechne-green">
                   <Icon className="h-6 w-6" />
                 </div>
-                <div className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-eotechne-green/10 px-3 py-1 text-xs font-semibold text-eotechne-blue-dark">
+                <div className="mt-3 inline-flex items-center gap-1.5 self-center rounded-full bg-eotechne-green/10 px-3 py-1 text-xs font-semibold text-eotechne-blue-dark">
                   <Award className="h-3.5 w-3.5 text-eotechne-green" />
                   Certificado
                 </div>
@@ -97,7 +97,7 @@ export default function Speech() {
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-eotechne-blue/10 text-eotechne-blue-dark">
                 <Icon className="h-6 w-6" />
               </div>
-              <div className="text-left">
+              <div>
                 <p className="text-lg font-bold text-eotechne-blue-dark">{value}</p>
                 <p className="mt-1 text-sm text-gray-500">{label}</p>
               </div>

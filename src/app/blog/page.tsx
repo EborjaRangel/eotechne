@@ -41,7 +41,7 @@ export default function BlogPage() {
               ))}
             </div>
           ) : (
-            <div className="mt-16 rounded-2xl border border-dashed border-gray-300 bg-white p-8 text-center sm:p-12">
+            <div className="mt-16 rounded-2xl border border-dashed border-gray-300 bg-white p-8 sm:p-12">
               <p className="text-gray-600">
                 Próximamente publicaremos nuestros primeros artículos.
               </p>

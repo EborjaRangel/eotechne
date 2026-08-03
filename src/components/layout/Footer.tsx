@@ -114,7 +114,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-8 text-center text-sm text-white/40">
+        <div className="mt-12 border-t border-white/10 pt-8 text-sm text-white/40">
           © {new Date().getFullYear()} EOTECHNE. Todos los derechos reservados.
         </div>
       </div>

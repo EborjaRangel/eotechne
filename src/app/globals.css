@@ -51,6 +51,25 @@ body {
   overflow-x: clip;
 }
 
+main,
+footer {
+  text-align: justify;
+  text-wrap: pretty;
+  hyphens: auto;
+}
+
+header,
+header *,
+button,
+input,
+select,
+textarea,
+label,
+[role="status"] {
+  text-align: unset;
+  hyphens: manual;
+}
+
 ::selection {
   background-color: var(--eotechne-green);
   color: var(--eotechne-blue-dark);
