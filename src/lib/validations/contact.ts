@@ -11,6 +11,7 @@ export const contactSchema = Yup.object({
   company: Yup.string().max(150, "Máximo 150 caracteres"),
   phone: Yup.string().max(20, "Máximo 20 caracteres"),
   service: Yup.string(),
+  industry: Yup.string(),
   message: Yup.string()
     .min(10, "El mensaje debe tener al menos 10 caracteres")
     .max(2000, "El mensaje no puede exceder 2000 caracteres")
@@ -25,5 +26,6 @@ export const contactInitialValues: ContactFormValues = {
   company: "",
   phone: "",
   service: "",
+  industry: "",
   message: "",
 };

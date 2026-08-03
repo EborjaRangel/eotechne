@@ -9,6 +9,7 @@ import {
   type ContactFormValues,
 } from "@/lib/validations/contact";
 import { serviceOptions } from "@/lib/data/services";
+import { industryOptions } from "@/lib/data/industries";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
@@ -99,6 +100,23 @@ export default function ContactForm() {
               ))}
             </Field>
             <ErrorMessage name="service" component="p" className="mt-1 text-sm text-red-400" />
+          </div>
+
+          <div>
+            <label htmlFor="industry" className="mb-1.5 block text-sm font-medium text-white/80">
+              Industria
+            </label>
+            <Field as="select" id="industry" name="industry" className={inputClass}>
+              <option value="" className="bg-eotechne-blue-dark">
+                Selecciona una industria
+              </option>
+              {industryOptions.map((industry) => (
+                <option key={industry} value={industry} className="bg-eotechne-blue-dark">
+                  {industry}
+                </option>
+              ))}
+            </Field>
+            <ErrorMessage name="industry" component="p" className="mt-1 text-sm text-red-400" />
           </div>
 
           <div>

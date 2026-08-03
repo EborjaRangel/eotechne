@@ -47,3 +47,5 @@ export const industries: Industry[] = [
   { name: "Transporte y Logística", icon: Truck },
   { name: "Utilities y Energía", icon: Zap },
 ];
+
+export const industryOptions = industries.map((industry) => industry.name);

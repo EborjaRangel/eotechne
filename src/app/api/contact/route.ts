@@ -19,6 +19,7 @@ export async function POST(request: Request) {
         company: validated.company || null,
         phone: validated.phone || null,
         service: validated.service || null,
+        industry: validated.industry || null,
         message: validated.message,
       },
     });
@@ -29,6 +30,7 @@ export async function POST(request: Request) {
       company: validated.company,
       phone: validated.phone,
       service: validated.service,
+      industry: validated.industry,
       message: validated.message,
     });
 

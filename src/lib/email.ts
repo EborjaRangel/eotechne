@@ -145,6 +145,7 @@ export async function sendContactNotification(data: {
   company?: string | null;
   phone?: string | null;
   service?: string | null;
+  industry?: string | null;
   message: string;
 }) {
   const rows = [
@@ -153,6 +154,7 @@ export async function sendContactNotification(data: {
     line("Empresa", data.company),
     line("Teléfono", data.phone),
     line("Servicio de interés", data.service),
+    line("Industria", data.industry),
     line("Mensaje", data.message),
   ].join("");
 
