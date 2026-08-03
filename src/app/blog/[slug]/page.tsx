@@ -7,6 +7,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import NewsletterForm from "@/components/blog/NewsletterForm";
 import PostCard from "@/components/blog/PostCard";
+import ArticleVideo from "@/components/blog/ArticleVideo";
 import ShareArticle from "@/components/blog/ShareArticle";
 import { SITE_URL } from "@/lib/brand";
 import { getAllPosts, getPostBySlug, getPostPath, formatDate } from "@/lib/blog";
@@ -111,6 +112,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {post.content}
             </ReactMarkdown>
           </div>
+
+          {post.youtube && (
+            <ArticleVideo youtubeUrl={post.youtube} title={post.title} />
+          )}
 
           <ShareArticle url={shareUrl} title={post.title} />
         </article>

@@ -4,6 +4,7 @@ description: "Qué son los agentes de IA, cómo funcionan y por qué las empresa
 date: "2026-08-03"
 author: "EOTECHNE"
 category: "IA Generativa"
+youtube: "https://www.youtube.com/watch?v=dNlyjdHLvCc"
 ---
 
 En 2026, la conversación sobre inteligencia artificial ya no se queda en chatbots que responden preguntas. El siguiente paso —y el que más impacto está generando en negocios— son los **agentes de IA**: sistemas que no solo generan texto, sino que **planifican, ejecutan tareas y se conectan con tus herramientas** de forma autónoma, siempre bajo reglas que tú defines.

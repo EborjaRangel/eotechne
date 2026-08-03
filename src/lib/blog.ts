@@ -12,6 +12,7 @@ export interface BlogPost {
   author: string;
   category: string;
   content: string;
+  youtube?: string;
 }
 
 function parsePost(slug: string, raw: string): BlogPost {
@@ -25,6 +26,7 @@ function parsePost(slug: string, raw: string): BlogPost {
     author: (data.author as string) ?? "EOTECHNE",
     category: (data.category as string) ?? "General",
     content,
+    youtube: typeof data.youtube === "string" ? data.youtube : undefined,
   };
 }
 
