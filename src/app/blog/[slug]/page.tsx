@@ -43,7 +43,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <>
       <Header />
-      <main className="min-h-screen min-w-0 overflow-x-clip bg-white pt-20 sm:pt-24">
+      <main className="min-h-screen min-w-0 overflow-x-clip bg-white pt-14 sm:pt-16">
         <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <Link
             href="/blog"

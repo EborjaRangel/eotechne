@@ -39,7 +39,7 @@ export default function LogosPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen min-w-0 overflow-x-clip bg-gray-50 pb-12 pt-20 sm:pb-16 sm:pt-24">
+      <main className="min-h-screen min-w-0 overflow-x-clip bg-gray-50 pb-12 pt-14 sm:pb-16 sm:pt-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <Link

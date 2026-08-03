@@ -5,6 +5,7 @@
   --eotechne-blue: #0066a1;
   --eotechne-green: #8ec44b;
   --eotechne-green-light: #a8d86e;
+  --header-height: 4.75rem;
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -21,7 +22,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: var(--header-height);
   overflow-x: clip;
 }
 
@@ -40,7 +41,7 @@ html {
 }
 
 section[id] {
-  scroll-margin-top: 4.5rem;
+  scroll-margin-top: var(--header-height);
 }
 
 body {

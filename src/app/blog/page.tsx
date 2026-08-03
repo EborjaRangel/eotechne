@@ -19,7 +19,7 @@ export default function BlogPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen min-w-0 overflow-x-clip bg-gray-50 pt-20 sm:pt-24">
+      <main className="min-h-screen min-w-0 overflow-x-clip bg-gray-50 pt-14 sm:pt-16">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <div className="max-w-3xl">
             <span className="inline-block rounded-full bg-eotechne-green/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-eotechne-green">
