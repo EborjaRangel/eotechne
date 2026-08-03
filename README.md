@@ -51,22 +51,36 @@ git remote add origin https://github.com/TU-USUARIO/eotechne.git
 git push -u origin main
 ```
 
-### 2. Railway (PostgreSQL)
+### 2. Railway (PostgreSQL + app)
 
-1. Crea un proyecto en [railway.app](https://railway.app)
-2. Agrega un servicio **PostgreSQL**
-3. Copia la `DATABASE_URL` desde Variables
-4. Ejecuta migraciones desde tu máquina o Railway CLI:
+1. Crea un proyecto en [railway.app](https://railway.app) o usa la CLI:
 
 ```bash
-DATABASE_URL="postgresql://..." npm run db:push
+railway init --name eotechne
+railway add --database postgres
+railway add --repo EborjaRangel/eotechne --branch main --service eotechne-web
 ```
+
+2. En el servicio **eotechne-web**, agrega la variable:
+
+```
+DATABASE_URL=${{Postgres.DATABASE_URL}}
+```
+
+3. El build ejecuta `prisma migrate deploy` automáticamente.
 
 ### 3. Vercel (Frontend)
 
-1. Importa el repositorio en [vercel.com](https://vercel.com)
-2. Agrega la variable de entorno `DATABASE_URL` (desde Railway)
-3. Deploy automático en cada push a `main`
+1. Importa el repositorio en [vercel.com/new](https://vercel.com/new)
+2. Framework: **Next.js** (detectado automáticamente)
+3. Agrega la variable de entorno `DATABASE_URL` (misma URL de Railway PostgreSQL)
+4. Deploy automático en cada push a `main`
+
+O con CLI:
+
+```bash
+npx vercel --prod
+```
 
 ## Estructura
 
