@@ -29,6 +29,15 @@ export const metadata: Metadata = {
     locale: "es_MX",
     siteName: "EOTECHNE",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "32x32" },
+      { url: "/logos/eotechne-prop4-e-icon.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
