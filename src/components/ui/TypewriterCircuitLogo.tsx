@@ -71,7 +71,7 @@ export default function TypewriterCircuitLogo({
     >
       {/* Recuadro estático — Propuesta 4: hexágono verde, E blanca */}
       <div
-        className={`relative shrink-0 overflow-hidden rounded-lg bg-eotechne-green shadow-sm ${iconBox}`}
+        className={`relative shrink-0 overflow-hidden rounded-lg bg-white shadow-sm ${iconBox}`}
         aria-hidden
       >
         <Image
