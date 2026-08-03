@@ -79,7 +79,7 @@ export default function ContactForm() {
               <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-white/80">
                 Teléfono
               </label>
-              <Field id="phone" name="phone" type="tel" placeholder="+52 55 1234 5678" className={inputClass} />
+              <Field id="phone" name="phone" type="tel" placeholder="55 3232 1113" className={inputClass} />
               <ErrorMessage name="phone" component="p" className="mt-1 text-sm text-red-400" />
             </div>
           </div>

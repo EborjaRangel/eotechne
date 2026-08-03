@@ -1,6 +1,10 @@
 import { Mail, Phone, MapPin } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ContactForm from "@/components/ui/ContactForm";
+import {
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_HREF,
+} from "@/lib/brand";
 
 export default function Contacto() {
   return (
@@ -41,7 +45,12 @@ export default function Contacto() {
                 </div>
                 <div>
                   <p className="text-sm text-white/50">Teléfono</p>
-                  <p className="font-medium text-white">+52 (55) 0000 0000</p>
+                  <a
+                    href={CONTACT_PHONE_HREF}
+                    className="font-medium text-white transition hover:text-eotechne-green"
+                  >
+                    {CONTACT_PHONE_DISPLAY}
+                  </a>
                 </div>
               </div>
               <div className="flex items-center gap-4">
