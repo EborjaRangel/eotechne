@@ -7,7 +7,9 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import NewsletterForm from "@/components/blog/NewsletterForm";
 import PostCard from "@/components/blog/PostCard";
-import { getAllPosts, getPostBySlug, formatDate } from "@/lib/blog";
+import ShareArticle from "@/components/blog/ShareArticle";
+import { SITE_URL } from "@/lib/brand";
+import { getAllPosts, getPostBySlug, getPostPath, formatDate } from "@/lib/blog";
 import { Calendar, User, ArrowLeft, Mail } from "lucide-react";
 
 interface BlogPostPageProps {
@@ -25,9 +27,38 @@ export async function generateMetadata({
   const post = getPostBySlug(slug);
   if (!post) return { title: "Artículo no encontrado" };
 
+  const url = `${SITE_URL}${getPostPath(slug)}`;
+
   return {
     title: `${post.title} | Blog EOTECHNE`,
     description: post.description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: "article",
+      locale: "es_MX",
+      siteName: "EOTECHNE",
+      url,
+      publishedTime: post.date,
+      authors: [post.author],
+      images: [
+        {
+          url: "/logos/eotechne-logo-propuesta-4-apilado.png",
+          width: 1200,
+          height: 630,
+          alt: "EOTECHNE",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: ["/logos/eotechne-logo-propuesta-4-apilado.png"],
+    },
   };
 }
 
@@ -39,6 +70,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const related = getAllPosts()
     .filter((p) => p.slug !== slug)
     .slice(0, 2);
+  const shareUrl = `${SITE_URL}${getPostPath(slug)}`;
 
   return (
     <>
@@ -79,6 +111,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {post.content}
             </ReactMarkdown>
           </div>
+
+          <ShareArticle url={shareUrl} title={post.title} />
         </article>
 
         <section className="border-t border-gray-100 bg-gray-50 py-12 sm:py-16">

@@ -57,3 +57,7 @@ export function formatDate(date: string): string {
     day: "numeric",
   });
 }
+
+export function getPostPath(slug: string): string {
+  return `/blog/${slug}`;
+}

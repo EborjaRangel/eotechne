@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import { TAGLINE } from "@/lib/brand";
+import { TAGLINE, SITE_URL } from "@/lib/brand";
 import "./globals.css";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -10,6 +10,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: `EOTECHNE | ${TAGLINE}`,
   description: `${TAGLINE}. Desde 2012, consultoría y desarrollo para PyMEs, medianas empresas e instituciones de gobierno. Certificados en IA Generativa, Ciencia de Datos Aplicada y Business Intelligence.`,
   keywords: [
