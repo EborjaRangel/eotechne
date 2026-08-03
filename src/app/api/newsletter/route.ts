@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { ValidationError } from "yup";
 import { prisma } from "@/lib/prisma";
+import { sendNewsletterNotification } from "@/lib/email";
 import { newsletterSchema } from "@/lib/validations/newsletter";
 
 export async function POST(request: Request) {
@@ -27,6 +28,11 @@ export async function POST(request: Request) {
         email: validated.email,
         name: validated.name || null,
       },
+    });
+
+    await sendNewsletterNotification({
+      email: validated.email,
+      name: validated.name,
     });
 
     return NextResponse.json(

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { ValidationError } from "yup";
 import { prisma } from "@/lib/prisma";
+import { sendContactNotification } from "@/lib/email";
 import { contactSchema } from "@/lib/validations/contact";
 
 export async function POST(request: Request) {
@@ -20,6 +21,15 @@ export async function POST(request: Request) {
         service: validated.service || null,
         message: validated.message,
       },
+    });
+
+    await sendContactNotification({
+      name: validated.name,
+      email: validated.email,
+      company: validated.company,
+      phone: validated.phone,
+      service: validated.service,
+      message: validated.message,
     });
 
     return NextResponse.json(
