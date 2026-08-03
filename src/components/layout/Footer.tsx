@@ -17,6 +17,7 @@ export default function Footer() {
                   alt="EOTECHNE"
                   width={160}
                   height={160}
+                  unoptimized
                   className="absolute left-1/2 top-0 h-16 w-16 -translate-x-1/2 object-contain"
                 />
               </div>

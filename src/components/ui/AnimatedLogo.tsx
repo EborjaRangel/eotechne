@@ -43,6 +43,7 @@ export default function AnimatedLogo({ variant = "header", dark = false }: Anima
               alt="EOTECHNE monograma"
               width={160}
               height={160}
+              unoptimized
               className={`absolute left-1/2 top-0 -translate-x-1/2 object-contain ${
                 isHero ? "h-[5.5rem] w-[5.5rem]" : "h-16 w-16"
               }`}
@@ -97,6 +98,7 @@ export function AnimatedLogoImage({ src, alt }: AnimatedLogoImageProps) {
           alt={alt}
           width={600}
           height={340}
+          unoptimized
           className="max-h-full w-auto object-contain"
         />
       </motion.div>

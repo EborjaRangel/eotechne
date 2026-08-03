@@ -78,6 +78,7 @@ export default function TypewriterCircuitLogo({
           src="/logos/eotechne-prop4-e-icon.png"
           alt=""
           fill
+          unoptimized
           sizes="48px"
           className="object-contain object-center p-0.5"
           priority
