@@ -126,7 +126,7 @@ export default function Header() {
       <div className="mx-auto flex h-full max-w-7xl min-w-0 items-center justify-between gap-2 px-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="min-w-0 shrink"
+          className="shrink-0"
           onClick={(event) => {
             if (pathname !== "/") return;
             event.preventDefault();
