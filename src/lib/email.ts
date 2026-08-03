@@ -1,3 +1,4 @@
+import nodemailer from "nodemailer";
 import { CONTACT_EMAIL } from "@/lib/brand";
 
 const RESEND_API_URL = "https://api.resend.com/emails";
@@ -36,46 +37,99 @@ interface SendEmailOptions {
   replyTo?: string;
 }
 
-export async function sendNotificationEmail({
+function getDestinationEmail(): string {
+  return process.env.CONTACT_EMAIL ?? CONTACT_EMAIL;
+}
+
+async function sendViaResend({
   subject,
   html,
   replyTo,
 }: SendEmailOptions): Promise<{ sent: boolean; error?: string }> {
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_EMAIL ?? CONTACT_EMAIL;
+  if (!apiKey) return { sent: false, error: "RESEND_API_KEY not configured" };
+
   const from =
     process.env.EMAIL_FROM ?? "EOTECHNE Notificaciones <onboarding@resend.dev>";
 
-  if (!apiKey) {
-    console.warn(
-      "RESEND_API_KEY no configurada. El registro se guardó en base de datos, pero no se envió correo.",
-    );
-    return { sent: false, error: "RESEND_API_KEY not configured" };
+  const response = await fetch(RESEND_API_URL, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from,
+      to: [getDestinationEmail()],
+      subject,
+      html,
+      ...(replyTo ? { reply_to: replyTo } : {}),
+    }),
+  });
+
+  if (!response.ok) {
+    const detail = await response.text();
+    return { sent: false, error: detail };
   }
 
-  try {
-    const response = await fetch(RESEND_API_URL, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from,
-        to: [to],
-        subject,
-        html,
-        ...(replyTo ? { reply_to: replyTo } : {}),
-      }),
-    });
+  return { sent: true };
+}
 
-    if (!response.ok) {
-      const detail = await response.text();
-      console.error("Email send failed:", response.status, detail);
-      return { sent: false, error: detail };
+async function sendViaSmtp({
+  subject,
+  html,
+  replyTo,
+}: SendEmailOptions): Promise<{ sent: boolean; error?: string }> {
+  const host = process.env.SMTP_HOST;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+
+  if (!host || !user || !pass) {
+    return { sent: false, error: "SMTP not configured" };
+  }
+
+  const port = Number(process.env.SMTP_PORT ?? "465");
+  const secure = process.env.SMTP_SECURE !== "false";
+
+  const transporter = nodemailer.createTransport({
+    host,
+    port,
+    secure,
+    auth: { user, pass },
+  });
+
+  await transporter.sendMail({
+    from: process.env.EMAIL_FROM ?? `EOTECHNE <${user}>`,
+    to: getDestinationEmail(),
+    subject,
+    html,
+    replyTo,
+  });
+
+  return { sent: true };
+}
+
+export async function sendNotificationEmail(
+  options: SendEmailOptions,
+): Promise<{ sent: boolean; error?: string }> {
+  try {
+    if (process.env.RESEND_API_KEY) {
+      const result = await sendViaResend(options);
+      if (result.sent) return result;
+      console.error("Resend failed, trying SMTP:", result.error);
     }
 
-    return { sent: true };
+    if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
+      return await sendViaSmtp(options);
+    }
+
+    console.warn(
+      "Correo no enviado: configura RESEND_API_KEY o SMTP (GoDaddy) en Vercel/Railway.",
+    );
+    return {
+      sent: false,
+      error: "No email provider configured",
+    };
   } catch (error) {
     console.error("Email send error:", error);
     return {
@@ -113,10 +167,7 @@ export async function sendNewsletterNotification(data: {
   email: string;
   name?: string | null;
 }) {
-  const rows = [
-    line("Correo", data.email),
-    line("Nombre", data.name),
-  ].join("");
+  const rows = [line("Correo", data.email), line("Nombre", data.name)].join("");
 
   return sendNotificationEmail({
     subject: `[EOTECHNE] Nueva suscripción al boletín`,
