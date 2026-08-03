@@ -61,3 +61,17 @@ export function formatDate(date: string): string {
 export function getPostPath(slug: string): string {
   return `/blog/${slug}`;
 }
+
+export function getPostExcerpt(content: string, maxLength = 320): string {
+  const plain = content
+    .replace(/^#+\s+/gm, "")
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/\[(.*?)\]\(.*?\)/g, "$1")
+    .replace(/^\s*[-*]\s+/gm, "")
+    .replace(/\|/g, " ")
+    .replace(/\n+/g, " ")
+    .trim();
+
+  if (plain.length <= maxLength) return plain;
+  return `${plain.slice(0, maxLength).trim()}…`;
+}

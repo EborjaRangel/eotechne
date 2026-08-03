@@ -25,3 +25,10 @@ model NewsletterSubscriber {
   name      String?
   createdAt DateTime @default(now())
 }
+
+model NewsletterBroadcast {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  recipientCount  Int
+  sentAt          DateTime @default(now())
+}

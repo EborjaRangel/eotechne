@@ -35,22 +35,23 @@ interface SendEmailOptions {
   subject: string;
   html: string;
   replyTo?: string;
-}
-
-function getDestinationEmail(): string {
-  return process.env.CONTACT_EMAIL ?? CONTACT_EMAIL;
+  to?: string | string[];
 }
 
 async function sendViaResend({
   subject,
   html,
   replyTo,
+  to,
 }: SendEmailOptions): Promise<{ sent: boolean; error?: string }> {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) return { sent: false, error: "RESEND_API_KEY not configured" };
 
   const from =
     process.env.EMAIL_FROM ?? "EOTECHNE Notificaciones <onboarding@resend.dev>";
+  const recipients = Array.isArray(to)
+    ? to
+    : [to ?? getDestinationEmail()];
 
   const response = await fetch(RESEND_API_URL, {
     method: "POST",
@@ -60,7 +61,7 @@ async function sendViaResend({
     },
     body: JSON.stringify({
       from,
-      to: [getDestinationEmail()],
+      to: recipients,
       subject,
       html,
       ...(replyTo ? { reply_to: replyTo } : {}),
@@ -79,6 +80,7 @@ async function sendViaSmtp({
   subject,
   html,
   replyTo,
+  to,
 }: SendEmailOptions): Promise<{ sent: boolean; error?: string }> {
   const host = process.env.SMTP_HOST;
   const user = process.env.SMTP_USER;
@@ -100,7 +102,7 @@ async function sendViaSmtp({
 
   await transporter.sendMail({
     from: process.env.EMAIL_FROM ?? `EOTECHNE <${user}>`,
-    to: getDestinationEmail(),
+    to: to ?? getDestinationEmail(),
     subject,
     html,
     replyTo,
@@ -109,7 +111,11 @@ async function sendViaSmtp({
   return { sent: true };
 }
 
-export async function sendNotificationEmail(
+function getDestinationEmail(): string {
+  return process.env.CONTACT_EMAIL ?? CONTACT_EMAIL;
+}
+
+export async function sendEmail(
   options: SendEmailOptions,
 ): Promise<{ sent: boolean; error?: string }> {
   try {
@@ -137,6 +143,12 @@ export async function sendNotificationEmail(
       error: error instanceof Error ? error.message : "Unknown email error",
     };
   }
+}
+
+export async function sendNotificationEmail(
+  options: SendEmailOptions,
+): Promise<{ sent: boolean; error?: string }> {
+  return sendEmail(options);
 }
 
 export async function sendContactNotification(data: {

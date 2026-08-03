@@ -16,7 +16,8 @@
     "db:migrate:deploy": "prisma migrate deploy",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "favicons": "node scripts/generate-favicons.mjs"
+    "favicons": "node scripts/generate-favicons.mjs",
+    "newsletter:send": "tsx scripts/send-newsletter-broadcast.ts"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.9.1",
@@ -47,6 +48,7 @@
     "png-to-ico": "^3.0.2",
     "prisma": "^7.9.1",
     "tailwindcss": "^4",
+    "tsx": "^4.23.5",
     "typescript": "^5"
   }
 }
