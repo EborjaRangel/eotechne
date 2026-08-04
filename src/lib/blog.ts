@@ -13,6 +13,7 @@ export interface BlogPost {
   category: string;
   content: string;
   youtube?: string;
+  video?: string;
 }
 
 function parsePost(slug: string, raw: string): BlogPost {
@@ -27,6 +28,7 @@ function parsePost(slug: string, raw: string): BlogPost {
     category: (data.category as string) ?? "General",
     content,
     youtube: typeof data.youtube === "string" ? data.youtube : undefined,
+    video: typeof data.video === "string" ? data.video : undefined,
   };
 }
 

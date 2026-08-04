@@ -113,8 +113,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </ReactMarkdown>
           </div>
 
-          {post.youtube && (
-            <ArticleVideo youtubeUrl={post.youtube} title={post.title} />
+          {(post.youtube || post.video) && (
+            <ArticleVideo
+              youtubeUrl={post.youtube}
+              videoSrc={post.video}
+              title={post.title}
+            />
           )}
 
           <ShareArticle url={shareUrl} title={post.title} />

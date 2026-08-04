@@ -4,6 +4,7 @@ description: "Datos sobre el consumo de redes sociales en México, el impacto de
 date: "2026-08-04"
 author: "EOTECHNE"
 category: "Salud digital"
+video: "/videos/blog/scroll-redes-sociales-tiempo-pantalla-2026.mp4"
 ---
 
 Abres el celular “solo un minuto”. Pasan veinte. Luego cuarenta. No recuerdas haber decidido seguir deslizando, pero el feed no termina. Ese patrón —el **scroll infinito**— no es casualidad: está diseñado para mantenerte mirando la pantalla el mayor tiempo posible.
