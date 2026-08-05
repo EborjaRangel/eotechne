@@ -4,6 +4,7 @@ description: "Cómo los dashboards y reportes automatizados con BI eliminan el t
 date: "2026-08-05"
 author: "EOTECHNE"
 category: "Business Intelligence"
+video: "/videos/blog/automatizacion-reportes-business-intelligence-2026.mp4"
 ---
 
 Cada lunes, alguien de tu equipo abre Excel, descarga datos de tres fuentes distintas, copia columnas, aplica fórmulas, corrige errores y — tres horas después — entrega un reporte que ya llegó tarde. Ese escenario se repite en **PyMEs, medianas empresas e instituciones de gobierno** todos los días.
