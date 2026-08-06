@@ -4,6 +4,7 @@ description: "Por qué han explotado los bancos digitales en México y Latinoam�
 date: "2026-08-06"
 author: "EOTECHNE"
 category: "Fintech"
+video: "/videos/blog/bancos-digitales-nubank-fintech-2026.mp4"
 ---
 
 Hace una década, abrir una cuenta bancaria en México implicaba filas, papelería, comisiones opacas y sucursales lejanas. Hoy millones de personas gestionan tarjetas, créditos y ahorros desde el celular — sin pisar una ventanilla. Ese cambio no fue casual: respondió a un mercado **desatendido**, a la **tecnología móvil** y a reguladores más abiertos a nuevos competidores.
