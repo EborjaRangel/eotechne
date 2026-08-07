@@ -4,6 +4,7 @@ description: "Qué es la biocomputación, cuáles son sus avances recientes — 
 date: "2026-08-07"
 author: "EOTECHNE"
 category: "Innovación tecnológica"
+video: "/videos/blog/biocomputacion-avances-2026.mp4"
 ---
 
 ¿Y si el próximo avance en computación no viniera de un chip de silicio más pequeño, sino de **células vivas**, **ADN programable** o **mini-cerebros de laboratorio**?
