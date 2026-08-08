@@ -5,12 +5,23 @@ import Footer from "@/components/layout/Footer";
 import PostCard from "@/components/blog/PostCard";
 import NewsletterForm from "@/components/blog/NewsletterForm";
 import { getAllPosts } from "@/lib/blog";
+import { SITE_URL } from "@/lib/brand";
+import {
+  defaultOpenGraph,
+  defaultTwitter,
+} from "@/lib/seo";
 import { Mail } from "lucide-react";
 
+const BLOG_TITLE = "Blog";
+const BLOG_DESCRIPTION =
+  "Artículos sobre desarrollo a la medida, IA Generativa, Ciencia de Datos Aplicada, Business Intelligence, fintech y tecnología para empresas y gobierno en México.";
+
 export const metadata: Metadata = {
-  title: "Blog | EOTECHNE",
-  description:
-    "Artículos sobre desarrollo a la medida, IA Generativa, Ciencia de Datos Aplicada y Business Intelligence.",
+  title: BLOG_TITLE,
+  description: BLOG_DESCRIPTION,
+  alternates: { canonical: `${SITE_URL}/blog` },
+  openGraph: defaultOpenGraph(BLOG_TITLE, BLOG_DESCRIPTION, "/blog"),
+  twitter: defaultTwitter(BLOG_TITLE, BLOG_DESCRIPTION),
 };
 
 export default function BlogPage() {

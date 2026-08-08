@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import JsonLd from "@/components/seo/JsonLd";
 import { TAGLINE, SITE_URL } from "@/lib/brand";
+import {
+  buildOrganizationJsonLd,
+  buildWebSiteJsonLd,
+  DEFAULT_KEYWORDS,
+  SITE_DESCRIPTION,
+  defaultOpenGraph,
+  defaultTwitter,
+} from "@/lib/seo";
 import "./globals.css";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -11,25 +20,33 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: `EOTECHNE | ${TAGLINE}`,
-  description: `${TAGLINE}. Desde 2012, consultoría y desarrollo para PyMEs, medianas empresas e instituciones de gobierno. Certificados en IA Generativa, Ciencia de Datos Aplicada y Business Intelligence.`,
-  keywords: [
-    "desarrollo de software",
-    "IA Generativa",
-    "Ciencia de Datos Aplicada",
-    "Business Intelligence",
-    "certificaciones",
-    "gobierno",
-    "PyMEs",
-    "México",
-  ],
-  openGraph: {
-    title: `EOTECHNE | ${TAGLINE}`,
-    description: TAGLINE,
-    type: "website",
-    locale: "es_MX",
-    siteName: "EOTECHNE",
+  title: {
+    default: `EOTECHNE | ${TAGLINE}`,
+    template: `%s | EOTECHNE`,
   },
+  description: SITE_DESCRIPTION,
+  keywords: DEFAULT_KEYWORDS,
+  authors: [{ name: "EOTECHNE", url: SITE_URL }],
+  creator: "EOTECHNE",
+  publisher: "EOTECHNE",
+  alternates: {
+    canonical: SITE_URL,
+    types: {
+      "application/rss+xml": `${SITE_URL}/feed.xml`,
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: defaultOpenGraph(`EOTECHNE | ${TAGLINE}`, SITE_DESCRIPTION),
+  twitter: defaultTwitter(`EOTECHNE | ${TAGLINE}`, SITE_DESCRIPTION),
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -39,6 +56,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
     apple: "/apple-icon.png",
   },
+  category: "technology",
 };
 
 export default function RootLayout({
@@ -47,8 +65,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${plusJakarta.variable} h-full antialiased`}>
-      <body className="flex min-h-full min-w-0 flex-col overflow-x-clip">{children}</body>
+    <html lang="es-MX" className={`${plusJakarta.variable} h-full antialiased`}>
+      <body className="flex min-h-full min-w-0 flex-col overflow-x-clip">
+        <JsonLd data={[buildOrganizationJsonLd(), buildWebSiteJsonLd()]} />
+        {children}
+      </body>
     </html>
   );
 }

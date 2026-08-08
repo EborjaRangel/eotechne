@@ -9,8 +9,16 @@ import NewsletterForm from "@/components/blog/NewsletterForm";
 import PostCard from "@/components/blog/PostCard";
 import ArticleVideo from "@/components/blog/ArticleVideo";
 import ShareArticle from "@/components/blog/ShareArticle";
+import JsonLd from "@/components/seo/JsonLd";
 import { SITE_URL } from "@/lib/brand";
 import { getAllPosts, getPostBySlug, getPostPath, formatDate } from "@/lib/blog";
+import {
+  absoluteUrl,
+  buildBlogPostingJsonLd,
+  buildBreadcrumbJsonLd,
+  DEFAULT_OG_IMAGE,
+  defaultTwitter,
+} from "@/lib/seo";
 import { Calendar, User, ArrowLeft, Mail } from "lucide-react";
 
 interface BlogPostPageProps {
@@ -31,8 +39,9 @@ export async function generateMetadata({
   const url = `${SITE_URL}${getPostPath(slug)}`;
 
   return {
-    title: `${post.title} | Blog EOTECHNE`,
+    title: post.title,
     description: post.description,
+    keywords: [post.category, "EOTECHNE", "blog tecnología", "México"],
     alternates: {
       canonical: url,
     },
@@ -44,22 +53,20 @@ export async function generateMetadata({
       siteName: "EOTECHNE",
       url,
       publishedTime: post.date,
+      modifiedTime: post.date,
       authors: [post.author],
+      section: post.category,
+      tags: [post.category],
       images: [
         {
-          url: "/logos/eotechne-logo-propuesta-4-apilado.png",
+          url: DEFAULT_OG_IMAGE,
           width: 1200,
           height: 630,
-          alt: "EOTECHNE",
+          alt: post.title,
         },
       ],
     },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.description,
-      images: ["/logos/eotechne-logo-propuesta-4-apilado.png"],
-    },
+    twitter: defaultTwitter(post.title, post.description),
   };
 }
 
@@ -72,9 +79,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     .filter((p) => p.slug !== slug)
     .slice(0, 2);
   const shareUrl = `${SITE_URL}${getPostPath(slug)}`;
+  const articleUrl = absoluteUrl(getPostPath(slug));
+
+  const jsonLd = [
+    buildBlogPostingJsonLd(post),
+    buildBreadcrumbJsonLd([
+      { name: "Inicio", url: SITE_URL },
+      { name: "Blog", url: absoluteUrl("/blog") },
+      { name: post.title, url: articleUrl },
+    ]),
+  ];
 
   return (
     <>
+      <JsonLd data={jsonLd} />
       <Header />
       <main className="min-h-screen min-w-0 overflow-x-clip bg-white pt-14 sm:pt-16">
         <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">

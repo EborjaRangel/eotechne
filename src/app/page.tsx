@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ScrollRestoration from "@/components/layout/ScrollRestoration";
@@ -11,6 +12,26 @@ import Tecnologias from "@/components/sections/Tecnologias";
 import BlogPreview from "@/components/sections/BlogPreview";
 import Boletin from "@/components/sections/Boletin";
 import Contacto from "@/components/sections/Contacto";
+import { SITE_URL, TAGLINE } from "@/lib/brand";
+import {
+  defaultOpenGraph,
+  defaultTwitter,
+  SITE_DESCRIPTION,
+} from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: `Software a la medida en México | ${TAGLINE}`,
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: SITE_URL },
+  openGraph: defaultOpenGraph(
+    `EOTECHNE | Software a la medida en México`,
+    SITE_DESCRIPTION,
+  ),
+  twitter: defaultTwitter(
+    `EOTECHNE | Software a la medida en México`,
+    SITE_DESCRIPTION,
+  ),
+};
 
 export default function Home() {
   return (
