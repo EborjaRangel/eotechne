@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin, Globe, Code2 } from "lucide-react";
 import NewsletterForm from "@/components/blog/NewsletterForm";
-import { TAGLINE } from "@/lib/brand";
+import { TAGLINE, LOGO_ALT, LOGO_PATH } from "@/lib/brand";
 
 export default function Footer() {
   return (
@@ -10,20 +10,17 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2">
-              <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-eotechne-green/20">
+            <div className="flex items-center">
+              <div className="relative h-16 w-auto">
                 <Image
-                  src="/logos/eotechne-logo-propuesta-2-monograma.png"
-                  alt="EOTECHNE"
-                  width={160}
-                  height={160}
+                  src={LOGO_PATH}
+                  alt={LOGO_ALT}
+                  width={512}
+                  height={512}
                   unoptimized
-                  className="absolute left-1/2 top-0 h-16 w-16 -translate-x-1/2 object-contain"
+                  className="h-16 w-auto object-contain"
                 />
               </div>
-              <span className="text-xl font-bold">
-                EO<span className="text-eotechne-green">TECHNE</span>
-              </span>
             </div>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-white/60">
               {TAGLINE}. Desde 2012, consultoría y desarrollo para PyMEs, medianas
@@ -37,7 +34,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2 text-sm text-white/60">
               <li>
                 <Link href="/logos" className="transition hover:text-white">
-                  Logos animados
+                  Logo EOTECHNE
                 </Link>
               </li>
               <li>

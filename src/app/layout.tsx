@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import JsonLd from "@/components/seo/JsonLd";
-import { TAGLINE, SITE_URL } from "@/lib/brand";
+import { TAGLINE, SITE_URL, LOGO_PATH } from "@/lib/brand";
 import {
   buildOrganizationJsonLd,
   buildWebSiteJsonLd,
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
       { url: "/icon.png", type: "image/png", sizes: "32x32" },
-      { url: "/logos/eotechne-prop4-e-icon.png", type: "image/png" },
+      { url: LOGO_PATH, type: "image/png" },
     ],
     shortcut: "/favicon.ico",
     apple: "/apple-icon.png",

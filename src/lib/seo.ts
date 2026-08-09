@@ -1,8 +1,14 @@
-import { SITE_URL, TAGLINE, CONTACT_EMAIL, CONTACT_PHONE_DISPLAY } from "@/lib/brand";
+import {
+  SITE_URL,
+  TAGLINE,
+  CONTACT_EMAIL,
+  CONTACT_PHONE_DISPLAY,
+  DEFAULT_OG_IMAGE,
+} from "@/lib/brand";
 import type { BlogPost } from "@/lib/blog";
 import { getPostPath } from "@/lib/blog";
 
-export const DEFAULT_OG_IMAGE = "/logos/eotechne-logo-propuesta-4-apilado.png";
+export { DEFAULT_OG_IMAGE };
 
 export const SITE_DESCRIPTION =
   "Consultoría y desarrollo de software a la medida para PyMEs, medianas empresas e instituciones de gobierno en México. Certificados en IA Generativa, Ciencia de Datos Aplicada y Business Intelligence. Desde 2012.";

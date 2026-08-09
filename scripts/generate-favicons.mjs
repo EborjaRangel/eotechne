@@ -5,7 +5,7 @@ import sharp from "sharp";
 import pngToIco from "png-to-ico";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
-const source = path.join(root, "public/logos/eotechne-prop4-e-icon.png");
+const source = path.join(root, "public/logos/eotechne-logo.png");
 const appDir = path.join(root, "src/app");
 const publicDir = path.join(root, "public");
 
@@ -46,7 +46,7 @@ async function main() {
     .png()
     .toFile(path.join(appDir, "apple-icon.png"));
 
-  console.log("Favicon assets generated from Propuesta 4 icon.");
+  console.log("Favicon assets generated from EOTECHNE logo.");
 }
 
 main().catch((error) => {

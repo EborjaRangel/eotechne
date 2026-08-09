@@ -3,6 +3,11 @@ export const TAGLINE =
 
 export const SITE_URL = "https://eotechne.com";
 
+export const LOGO_PATH = "/logos/eotechne-logo.png";
+export const LOGO_ALT =
+  "EOTECHNE — Data Science & Big Data. Software a la medida.";
+export const DEFAULT_OG_IMAGE = LOGO_PATH;
+
 export const CONTACT_EMAIL = "contacto@eotechne.com";
 
 export const CONTACT_PHONE = "5532321113";

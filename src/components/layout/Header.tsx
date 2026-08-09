@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import TypewriterCircuitLogo from "@/components/ui/TypewriterCircuitLogo";
+import EotechneLogo from "@/components/ui/EotechneLogo";
 
 const navLinks = [
   { href: "/#enfoque", label: "Enfoque", sectionId: "enfoque" },
@@ -136,7 +136,7 @@ export default function Header() {
             setMobileOpen(false);
           }}
         >
-          <TypewriterCircuitLogo size="sm" dark />
+          <EotechneLogo size="sm" priority />
         </Link>
 
         <nav className="hidden items-center gap-2 lg:flex xl:gap-3">
