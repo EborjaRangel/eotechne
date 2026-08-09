@@ -3,7 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import { AnimatedLogoImage } from "@/components/ui/AnimatedLogo";
-import EotechneLogo from "@/components/ui/EotechneLogo";
+import TypewriterCircuitLogo from "@/components/ui/TypewriterCircuitLogo";
 import { LOGO_PATH } from "@/lib/brand";
 
 export default function LogosPage() {
@@ -49,14 +49,14 @@ export default function LogosPage() {
             <AnimatedSection delay={0.1}>
               <div className="flex h-full flex-col justify-center rounded-2xl border border-gray-200 bg-eotechne-blue-dark p-8 sm:p-10">
                 <p className="text-sm font-semibold uppercase tracking-widest text-eotechne-green">
-                  Vista en header
+                  Vista en header (con animación)
                 </p>
                 <div className="mt-6 flex items-center justify-center rounded-xl bg-white/5 p-6">
-                  <EotechneLogo size="md" />
+                  <TypewriterCircuitLogo size="md" dark />
                 </div>
                 <p className="mt-6 text-sm text-white/70">
-                  También disponible en tamaños pequeño (navegación) y grande
-                  (presentaciones).
+                  El nombre EOTECHNE se escribe y borra con efecto typewriter,
+                  junto al logo circular oficial.
                 </p>
               </div>
             </AnimatedSection>
