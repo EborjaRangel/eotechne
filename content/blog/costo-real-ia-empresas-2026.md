@@ -4,6 +4,7 @@ description: "Cuánto cuesta de verdad implementar IA en una PyME o institución
 date: "2026-08-10"
 author: "EOTECHNE"
 category: "IA Generativa"
+video: "/videos/blog/costo-real-ia-empresas-2026.mp4"
 ---
 
 “La IA es gratis” — hasta que tu empresa empieza a usarla de verdad.
