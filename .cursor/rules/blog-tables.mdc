@@ -1,0 +1,32 @@
+---
+description: Usar tablas Markdown cuando un artículo del blog compare varias columnas o datos en paralelo
+globs: content/blog/**/*.md
+alwaysApply: false
+---
+
+# Tablas en artículos del blog
+
+Cuando un bloque compare **dos o más columnas** de información (precios, opciones, capas, rangos, A vs B, etc.), usa **tabla Markdown** — no listas con flechas, no columnas sueltas ni texto alineado a mano.
+
+## Formato
+
+```md
+| Columna A | Columna B | Columna C |
+|-----------|-----------|-----------|
+| Dato 1    | Dato 2    | Dato 3    |
+```
+
+## Usar tabla cuando
+
+- Hay comparativas (herramienta / precio / uso)
+- Hay opciones lado a lado (Opción A vs B)
+- Hay rangos o capas con varios campos
+- El lector necesita alinear conceptos en columnas
+
+## Evitar
+
+- Listas del estilo `Concepto → valor → otro valor` cuando haya más de un campo por fila
+- Párrafos que intenten simular columnas
+- Tablas HTML crudas; preferir Markdown GFM
+
+El sitio ya estiliza las tablas del blog (borde, encabezado, filas alternadas y scroll horizontal en móvil).

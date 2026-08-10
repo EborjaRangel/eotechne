@@ -41,8 +41,10 @@ La forma más común de empezar. Cada persona paga una licencia mensual:
 
 Si das acceso a **10 empleados** con ChatGPT Team (~$25 USD c/u):
 
-- **~$250 USD/mes** (~$4,500 MXN)
-- **~$3,000 USD/año** (~$54,000 MXN)
+| Periodo | Costo aproximado |
+|---------|------------------|
+| **Mensual** | ~$250 USD (~$4,500 MXN) |
+| **Anual** | ~$3,000 USD (~$54,000 MXN) |
 
 Eso solo es **uso individual**. No incluye conectar la IA a tu CRM, inventarios ni automatizar procesos. Cada empleado usa la herramienta por su cuenta — sin trazabilidad central ni reglas de negocio compartidas.
 
@@ -66,11 +68,12 @@ Suena barato por millón — hasta que multiplicas por volumen.
 
 ### Ejemplo: chatbot de atención al cliente
 
-Supongamos **500 consultas/día**, ~2,000 tokens por consulta (entrada + salida):
+Supongamos **500 consultas/día**, ~2,000 tokens por consulta (entrada + salida) → **~1 millón de tokens/día** en uso intensivo:
 
-- **1 millón de tokens/día** en uso intensivo
-- Con modelo económico: **~$1–3 USD/día** → **~$30–90 USD/mes**
-- Con modelo premium: **~$15–40 USD/día** → **~$450–1,200 USD/mes**
+| Tipo de modelo | Costo diario (aprox.) | Costo mensual (aprox.) |
+|----------------|----------------------|------------------------|
+| **Económico** (mini/flash) | ~$1–3 USD | ~$30–90 USD |
+| **Premium** (GPT-4o / equivalente) | ~$15–40 USD | ~$450–1,200 USD |
 
 Multiplica por **varios flujos** (clasificación de correos, resúmenes de reuniones, generación de reportes) y el gasto en API puede superar las suscripciones individuales.
 
@@ -171,15 +174,18 @@ Lo que hoy es GPT-4o mañana puede ser un modelo distinto. Presupuesta **actuali
 
 ## Ejemplo real simplificado
 
-**Empresa de servicios, 25 empleados.** Hoy:
+**Empresa de servicios, 25 empleados.** Situación actual:
 
-- 10 licencias Copilot: **~$300 USD/mes**
-- Tiempo en reportes manuales: **~40 h/mes** (~$40,000 MXN en salarios)
-- Errores de captura: **~5 h/mes** en correcciones
+| Concepto | Valor |
+|----------|-------|
+| Licencias Copilot (10) | ~$300 USD/mes |
+| Tiempo en reportes manuales | ~40 h/mes (~$40,000 MXN en salarios) |
+| Errores de captura | ~5 h/mes en correcciones |
 
-**Opción A:** Seguir solo con Copilot → **$300 USD/mes**, reportes siguen manuales.
-
-**Opción B:** Agente + dashboard BI a la medida → **~$120,000 MXN** inicial + **~$12,000 MXN/mes** mantenimiento + **~$50 USD/mes** API.
+| Opción | Qué incluye | Costo |
+|--------|-------------|-------|
+| **A** | Seguir solo con Copilot | $300 USD/mes; reportes siguen manuales |
+| **B** | Agente + dashboard BI a la medida | ~$120,000 MXN inicial + ~$12,000 MXN/mes mantenimiento + ~$50 USD/mes API |
 
 Si el agente reduce **30 horas/mes** de trabajo manual (~$30,000 MXN), el retorno aparece en **~4–5 meses**. Después, el ahorro es neto.
 
@@ -187,9 +193,11 @@ Si el agente reduce **30 horas/mes** de trabajo manual (~$30,000 MXN), el retorn
 
 El costo real de la IA en tu empresa depende de **qué tan profundo** quieres integrarla:
 
-- **Uso personal** → suscripciones de $20–30 USD/persona/mes
-- **Integración ligera** → APIs de $50–500 USD/mes según volumen
-- **Automatización seria** → inversión inicial + infraestructura + mantenimiento
+| Nivel de integración | Costo típico |
+|----------------------|--------------|
+| **Uso personal** | Suscripciones de $20–30 USD/persona/mes |
+| **Integración ligera** | APIs de $50–500 USD/mes según volumen |
+| **Automatización seria** | Inversión inicial + infraestructura + mantenimiento |
 
 La clave no es evitar gastar — es **gastar donde hay retorno medible**. Un chatbot que responde FAQ cuesta poco. Un agente que procesa trámites de gobierno con trazabilidad cuesta más — pero el valor también es mayor.
 

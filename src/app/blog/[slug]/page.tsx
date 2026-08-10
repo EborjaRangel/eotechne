@@ -126,7 +126,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           <div className="prose prose-base sm:prose-lg mt-10 max-w-none overflow-x-auto prose-headings:text-eotechne-blue-dark prose-a:text-eotechne-green prose-strong:text-eotechne-blue-dark sm:mt-12">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                table: ({ children }) => (
+                  <div className="table-wrap">
+                    <table>{children}</table>
+                  </div>
+                ),
+              }}
+            >
               {post.content}
             </ReactMarkdown>
           </div>
