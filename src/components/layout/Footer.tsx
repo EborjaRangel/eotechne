@@ -33,11 +33,6 @@ export default function Footer() {
             <h3 className="font-semibold text-eotechne-green">Enlaces</h3>
             <ul className="mt-4 space-y-2 text-sm text-white/60">
               <li>
-                <Link href="/logos" className="transition hover:text-white">
-                  Logo EOTECHNE
-                </Link>
-              </li>
-              <li>
                 <Link href="/blog" className="transition hover:text-white">
                   Blog
                 </Link>
