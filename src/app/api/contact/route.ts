@@ -2,11 +2,19 @@ import { NextResponse } from "next/server";
 import { ValidationError } from "yup";
 import { prisma } from "@/lib/prisma";
 import { sendContactNotification } from "@/lib/email";
-import { contactSchema } from "@/lib/validations/contact";
+import {
+  contactSchema,
+  isContactHoneypotFilled,
+} from "@/lib/validations/contact";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
+
+    if (isContactHoneypotFilled(body)) {
+      return NextResponse.json({ success: true }, { status: 201 });
+    }
+
     const validated = await contactSchema.validate(body, {
       abortEarly: false,
       stripUnknown: true,

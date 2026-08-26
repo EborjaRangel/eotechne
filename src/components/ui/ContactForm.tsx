@@ -1,17 +1,28 @@
 "use client";
 
-import { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useId, useState } from "react";
+import { Formik, Form, Field, ErrorMessage, type FieldProps } from "formik";
 import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import {
   contactSchema,
   contactInitialValues,
+  CONTACT_HONEYPOT_FIELD,
   type ContactFormValues,
 } from "@/lib/validations/contact";
 import { serviceOptions } from "@/lib/data/services";
 import { industryOptions } from "@/lib/data/industries";
 
 export default function ContactForm() {
+  const id = useId();
+  const nameId = `${id}-name`;
+  const emailId = `${id}-email`;
+  const companyId = `${id}-company`;
+  const phoneId = `${id}-phone`;
+  const serviceId = `${id}-service`;
+  const industryId = `${id}-industry`;
+  const messageId = `${id}-message`;
+  const notRobotId = `${id}-not-robot`;
+  const honeypotId = `${id}-website`;
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
   const handleSubmit = async (
@@ -50,46 +61,56 @@ export default function ContactForm() {
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
-        <Form className="space-y-5">
+        <Form className="relative space-y-5">
+          <div className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+            <Field
+              id={honeypotId}
+              name={CONTACT_HONEYPOT_FIELD}
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
+
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-white/80">
+              <label htmlFor={nameId} className="mb-1.5 block text-sm font-medium text-white/80">
                 Nombre *
               </label>
-              <Field id="name" name="name" type="text" placeholder="Tu nombre" className={inputClass} />
+              <Field id={nameId} name="name" type="text" placeholder="Tu nombre" className={inputClass} />
               <ErrorMessage name="name" component="p" className="mt-1 text-sm text-red-400" />
             </div>
             <div>
-              <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-white/80">
+              <label htmlFor={emailId} className="mb-1.5 block text-sm font-medium text-white/80">
                 Correo electrónico *
               </label>
-              <Field id="email" name="email" type="email" placeholder="tu@empresa.com" className={inputClass} />
+              <Field id={emailId} name="email" type="email" placeholder="tu@empresa.com" className={inputClass} />
               <ErrorMessage name="email" component="p" className="mt-1 text-sm text-red-400" />
             </div>
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="company" className="mb-1.5 block text-sm font-medium text-white/80">
+              <label htmlFor={companyId} className="mb-1.5 block text-sm font-medium text-white/80">
                 Empresa
               </label>
-              <Field id="company" name="company" type="text" placeholder="Nombre de tu empresa" className={inputClass} />
+              <Field id={companyId} name="company" type="text" placeholder="Nombre de tu empresa" className={inputClass} />
               <ErrorMessage name="company" component="p" className="mt-1 text-sm text-red-400" />
             </div>
             <div>
-              <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-white/80">
+              <label htmlFor={phoneId} className="mb-1.5 block text-sm font-medium text-white/80">
                 Teléfono
               </label>
-              <Field id="phone" name="phone" type="tel" placeholder="55 3232 1113" className={inputClass} />
+              <Field id={phoneId} name="phone" type="tel" placeholder="55 3232 1113" className={inputClass} />
               <ErrorMessage name="phone" component="p" className="mt-1 text-sm text-red-400" />
             </div>
           </div>
 
           <div>
-            <label htmlFor="service" className="mb-1.5 block text-sm font-medium text-white/80">
+            <label htmlFor={serviceId} className="mb-1.5 block text-sm font-medium text-white/80">
               Servicio de interés
             </label>
-            <Field as="select" id="service" name="service" className={inputClass}>
+            <Field as="select" id={serviceId} name="service" className={inputClass}>
               <option value="" className="bg-eotechne-blue-dark">
                 Selecciona un servicio
               </option>
@@ -103,10 +124,10 @@ export default function ContactForm() {
           </div>
 
           <div>
-            <label htmlFor="industry" className="mb-1.5 block text-sm font-medium text-white/80">
+            <label htmlFor={industryId} className="mb-1.5 block text-sm font-medium text-white/80">
               Industria
             </label>
-            <Field as="select" id="industry" name="industry" className={inputClass}>
+            <Field as="select" id={industryId} name="industry" className={inputClass}>
               <option value="" className="bg-eotechne-blue-dark">
                 Selecciona una industria
               </option>
@@ -120,18 +141,43 @@ export default function ContactForm() {
           </div>
 
           <div>
-            <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-white/80">
+            <label htmlFor={messageId} className="mb-1.5 block text-sm font-medium text-white/80">
               Mensaje *
             </label>
             <Field
               as="textarea"
-              id="message"
+              id={messageId}
               name="message"
               rows={5}
               placeholder="Cuéntanos sobre tu proyecto..."
               className={`${inputClass} resize-none`}
             />
             <ErrorMessage name="message" component="p" className="mt-1 text-sm text-red-400" />
+          </div>
+
+          <div>
+            <div className="flex items-center gap-2.5">
+              <Field name="notRobot">
+                {({ field }: FieldProps<boolean>) => (
+                  <input
+                    id={notRobotId}
+                    type="checkbox"
+                    name={field.name}
+                    checked={Boolean(field.value)}
+                    onChange={field.onChange}
+                    onBlur={field.onBlur}
+                    className="h-4 w-4 shrink-0 cursor-pointer rounded border-white/30 bg-white/10 accent-eotechne-green"
+                  />
+                )}
+              </Field>
+              <label
+                htmlFor={notRobotId}
+                className="cursor-pointer select-none text-sm font-medium text-white/80"
+              >
+                No soy un robot
+              </label>
+            </div>
+            <ErrorMessage name="notRobot" component="p" className="mt-1 text-sm text-red-400" />
           </div>
 
           {status === "success" && (

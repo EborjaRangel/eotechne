@@ -1,5 +1,7 @@
 import * as Yup from "yup";
 
+export const CONTACT_HONEYPOT_FIELD = "website";
+
 export const contactSchema = Yup.object({
   name: Yup.string()
     .min(2, "El nombre debe tener al menos 2 caracteres")
@@ -16,9 +18,18 @@ export const contactSchema = Yup.object({
     .min(10, "El mensaje debe tener al menos 10 caracteres")
     .max(2000, "El mensaje no puede exceder 2000 caracteres")
     .required("El mensaje es requerido"),
+  notRobot: Yup.boolean()
+    .oneOf([true], "Confirma que no eres un robot")
+    .required("Confirma que no eres un robot"),
 });
 
-export type ContactFormValues = Yup.InferType<typeof contactSchema>;
+export type ContactFormValues = Omit<
+  Yup.InferType<typeof contactSchema>,
+  "notRobot"
+> & {
+  notRobot: boolean;
+  [CONTACT_HONEYPOT_FIELD]: string;
+};
 
 export const contactInitialValues: ContactFormValues = {
   name: "",
@@ -28,4 +39,12 @@ export const contactInitialValues: ContactFormValues = {
   service: "",
   industry: "",
   message: "",
+  notRobot: false,
+  [CONTACT_HONEYPOT_FIELD]: "",
 };
+
+export function isContactHoneypotFilled(body: unknown): boolean {
+  if (!body || typeof body !== "object") return false;
+  const value = (body as Record<string, unknown>)[CONTACT_HONEYPOT_FIELD];
+  return typeof value === "string" && value.trim().length > 0;
+}
