@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useId, useState } from "react";
+import { Formik, Form, Field, ErrorMessage, type FieldProps } from "formik";
 import { Mail, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import {
   newsletterSchema,
   newsletterInitialValues,
+  NEWSLETTER_HONEYPOT_FIELD,
   type NewsletterFormValues,
 } from "@/lib/validations/newsletter";
 
@@ -18,6 +19,11 @@ export default function NewsletterForm({
   variant = "light",
   compact = false,
 }: NewsletterFormProps) {
+  const id = useId();
+  const nameId = `${id}-name`;
+  const emailId = `${id}-email`;
+  const notRobotId = `${id}-not-robot`;
+  const honeypotId = `${id}-website`;
   const [status, setStatus] = useState<"idle" | "success" | "error" | "duplicate">("idle");
 
   const handleSubmit = async (
@@ -55,6 +61,9 @@ export default function NewsletterForm({
   const inputClass = isDark
     ? "w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-eotechne-green focus:ring-2 focus:ring-eotechne-green/20"
     : "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-eotechne-blue-dark placeholder:text-gray-400 outline-none transition focus:border-eotechne-green focus:ring-2 focus:ring-eotechne-green/20";
+  const checkboxClass = isDark
+    ? "h-4 w-4 shrink-0 rounded border-white/30 bg-white/10 accent-eotechne-green"
+    : "h-4 w-4 shrink-0 rounded border-gray-300 bg-white accent-eotechne-green";
 
   return (
     <Formik
@@ -63,17 +72,27 @@ export default function NewsletterForm({
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
-        <Form className={compact ? "space-y-3" : "space-y-4"}>
+        <Form className={`relative ${compact ? "space-y-3" : "space-y-4"}`}>
+          <div className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+            <Field
+              id={honeypotId}
+              name={NEWSLETTER_HONEYPOT_FIELD}
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
+
           {!compact && (
             <div>
               <label
-                htmlFor="newsletter-name"
+                htmlFor={nameId}
                 className={`mb-1.5 block text-sm font-medium ${isDark ? "text-white/80" : "text-gray-700"}`}
               >
                 Nombre (opcional)
               </label>
               <Field
-                id="newsletter-name"
+                id={nameId}
                 name="name"
                 type="text"
                 placeholder="Tu nombre"
@@ -83,31 +102,58 @@ export default function NewsletterForm({
             </div>
           )}
 
-          <div className={compact ? "flex flex-col gap-3 sm:flex-row" : ""}>
-            <div className={compact ? "flex-1" : ""}>
-              {!compact && (
+          <div>
+            {!compact && (
+              <label
+                htmlFor={emailId}
+                className={`mb-1.5 block text-sm font-medium ${isDark ? "text-white/80" : "text-gray-700"}`}
+              >
+                Correo electrónico *
+              </label>
+            )}
+            <Field
+              id={emailId}
+              name="email"
+              type="email"
+              placeholder="tu@empresa.com"
+              className={inputClass}
+            />
+            <ErrorMessage name="email" component="p" className="mt-1 text-sm text-red-400" />
+          </div>
+
+          <div className={compact ? "flex flex-col gap-3 sm:flex-row sm:items-start" : "space-y-4"}>
+            <div className="flex-1">
+              <div className="flex min-h-12 items-center gap-2.5">
+                <Field name="notRobot">
+                  {({ field }: FieldProps<boolean>) => (
+                    <input
+                      id={notRobotId}
+                      type="checkbox"
+                      name={field.name}
+                      checked={Boolean(field.value)}
+                      onChange={field.onChange}
+                      onBlur={field.onBlur}
+                      className={`${checkboxClass} cursor-pointer`}
+                    />
+                  )}
+                </Field>
                 <label
-                  htmlFor="newsletter-email"
-                  className={`mb-1.5 block text-sm font-medium ${isDark ? "text-white/80" : "text-gray-700"}`}
+                  htmlFor={notRobotId}
+                  className={`cursor-pointer select-none text-sm font-medium ${
+                    isDark ? "text-white/80" : "text-gray-700"
+                  }`}
                 >
-                  Correo electrónico *
+                  No soy un robot
                 </label>
-              )}
-              <Field
-                id="newsletter-email"
-                name="email"
-                type="email"
-                placeholder="tu@empresa.com"
-                className={inputClass}
-              />
-              <ErrorMessage name="email" component="p" className="mt-1 text-sm text-red-400" />
+              </div>
+              <ErrorMessage name="notRobot" component="p" className="mt-1 text-sm text-red-400" />
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`inline-flex items-center justify-center gap-2 rounded-xl bg-eotechne-green font-semibold text-eotechne-blue-dark transition hover:bg-eotechne-green-light disabled:cursor-not-allowed disabled:opacity-60 ${
-                compact ? "px-6 py-3 sm:shrink-0" : "w-full px-6 py-3 sm:w-auto"
+              className={`inline-flex items-center justify-center gap-2 rounded-xl bg-eotechne-green px-6 py-3 font-semibold text-eotechne-blue-dark transition hover:bg-eotechne-green-light disabled:cursor-not-allowed disabled:opacity-60 ${
+                compact ? "sm:shrink-0" : "w-full sm:w-auto"
               }`}
             >
               {isSubmitting ? (

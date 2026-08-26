@@ -2,11 +2,20 @@ import { NextResponse } from "next/server";
 import { ValidationError } from "yup";
 import { prisma } from "@/lib/prisma";
 import { sendNewsletterNotification } from "@/lib/email";
-import { newsletterSchema } from "@/lib/validations/newsletter";
+import {
+  isNewsletterHoneypotFilled,
+  newsletterSchema,
+} from "@/lib/validations/newsletter";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
+
+    // Bots that autofill hidden fields get a fake success and are not stored.
+    if (isNewsletterHoneypotFilled(body)) {
+      return NextResponse.json({ success: true }, { status: 201 });
+    }
+
     const validated = await newsletterSchema.validate(body, {
       abortEarly: false,
       stripUnknown: true,
