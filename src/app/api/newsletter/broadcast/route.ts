@@ -4,6 +4,8 @@ import {
   broadcastNewsletterPost,
 } from "@/lib/newsletter-broadcast";
 
+export const maxDuration = 300;
+
 function isAuthorized(request: Request): boolean {
   const secret = process.env.NEWSLETTER_SECRET;
   if (!secret) return false;

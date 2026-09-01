@@ -76,29 +76,44 @@ async function sendViaResend({
   return { sent: true };
 }
 
+let smtpTransporter: ReturnType<typeof nodemailer.createTransport> | null = null;
+
+function getSmtpTransporter() {
+  const host = process.env.SMTP_HOST;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+
+  if (!host || !user || !pass) return null;
+
+  if (!smtpTransporter) {
+    const port = Number(process.env.SMTP_PORT ?? "465");
+    const secure = process.env.SMTP_SECURE !== "false";
+    smtpTransporter = nodemailer.createTransport({
+      host,
+      port,
+      secure,
+      auth: { user, pass },
+      pool: true,
+      maxConnections: 3,
+      maxMessages: Infinity,
+    });
+  }
+
+  return smtpTransporter;
+}
+
 async function sendViaSmtp({
   subject,
   html,
   replyTo,
   to,
 }: SendEmailOptions): Promise<{ sent: boolean; error?: string }> {
-  const host = process.env.SMTP_HOST;
   const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
+  const transporter = getSmtpTransporter();
 
-  if (!host || !user || !pass) {
+  if (!transporter || !user) {
     return { sent: false, error: "SMTP not configured" };
   }
-
-  const port = Number(process.env.SMTP_PORT ?? "465");
-  const secure = process.env.SMTP_SECURE !== "false";
-
-  const transporter = nodemailer.createTransport({
-    host,
-    port,
-    secure,
-    auth: { user, pass },
-  });
 
   await transporter.sendMail({
     from: process.env.EMAIL_FROM ?? `EOTECHNE <${user}>`,

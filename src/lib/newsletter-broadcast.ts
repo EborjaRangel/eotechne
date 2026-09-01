@@ -96,22 +96,29 @@ export async function broadcastNewsletterPost(slug: string) {
   let sentCount = 0;
   const failures: string[] = [];
 
-  for (const subscriber of subscribers) {
-    const html = buildNewsletterEmailHtml(post, subscriber.name);
-    const result = await sendEmail({
-      to: subscriber.email,
-      subject,
-      html,
-      replyTo: CONTACT_EMAIL,
-    });
+  const concurrency = 4;
+  for (let i = 0; i < subscribers.length; i += concurrency) {
+    const batch = subscribers.slice(i, i + concurrency);
+    const results = await Promise.all(
+      batch.map(async (subscriber) => {
+        const html = buildNewsletterEmailHtml(post, subscriber.name);
+        const result = await sendEmail({
+          to: subscriber.email,
+          subject,
+          html,
+          replyTo: CONTACT_EMAIL,
+        });
+        return { email: subscriber.email, result };
+      }),
+    );
 
-    if (result.sent) {
-      sentCount += 1;
-    } else {
-      failures.push(`${subscriber.email}: ${result.error ?? "error desconocido"}`);
+    for (const { email, result } of results) {
+      if (result.sent) {
+        sentCount += 1;
+      } else {
+        failures.push(`${email}: ${result.error ?? "error desconocido"}`);
+      }
     }
-
-    await new Promise((resolve) => setTimeout(resolve, 300));
   }
 
   if (sentCount === 0) {
