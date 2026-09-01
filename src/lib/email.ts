@@ -76,7 +76,7 @@ async function sendViaResend({
   return { sent: true };
 }
 
-let smtpTransporter: ReturnType<typeof nodemailer.createTransport> | null = null;
+let smtpTransporter: nodemailer.Transporter | null = null;
 
 function getSmtpTransporter() {
   const host = process.env.SMTP_HOST;
@@ -93,9 +93,6 @@ function getSmtpTransporter() {
       port,
       secure,
       auth: { user, pass },
-      pool: true,
-      maxConnections: 3,
-      maxMessages: Infinity,
     });
   }
 
